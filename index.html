@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Registration Page</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif; /* Use Roboto font */
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #ff0000; /* Red color */
+            color: white;
+            padding: 10px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .switch-button {
+            background-color: #ff4500; /* Adjust the color here */
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="container">
+        <h2 id="formTitle">Registration</h2>
+
+        <form id="registrationForm">
+            <label for="newUsername">Username:</label>
+            <input type="text" id="newUsername" name="newUsername" required>
+
+            <label for="newPassword">Password:</label>
+            <input type="password" id="newPassword" name="newPassword" required>
+
+            <button type="button" onclick="register()">Register</button>
+            <button type="button" onclick="switchForm('login')" class="switch-button">Switch to Login</button>
+            
+        </form>
+
+        <form id="loginForm" style="display: none;">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="button" onclick="login()">Login</button>
+            <button type="button" onclick="switchForm('registration')" class="switch-button">Switch to Registration</button>
+            
+        </form>
+    </div>
+
+    <script>
+        function register() {
+            // Get values from the registration form
+            var username = document.getElementById('newUsername').value;
+            var password = document.getElementById('newPassword').value;
+
+            // Store values in sessionStorage for use on the login page
+            sessionStorage.setItem('username', username);
+            sessionStorage.setItem('password', password);
+
+            // Add your registration logic here
+            window.location.href = 'products.html';
+        }
+
+        function login() {
+            // Add your login logic here
+            
+			// Redirect to the products page after successful login
+            window.location.href = 'products.html';
+        }
+
+        function switchForm(formType) {
+            var registrationForm = document.getElementById('registrationForm');
+            var loginForm = document.getElementById('loginForm');
+            var formTitle = document.getElementById('formTitle');
+
+            if (formType === 'login') {
+                registrationForm.style.display = 'none';
+                loginForm.style.display = 'block';
+                formTitle.innerText = 'Login';
+            } else {
+                registrationForm.style.display = 'block';
+                loginForm.style.display = 'none';
+                formTitle.innerText = 'Registration';
+            }
+        }
+    </script>
+</body>
+</html>
